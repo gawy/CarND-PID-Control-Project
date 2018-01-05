@@ -2,6 +2,9 @@
 #define PID_H
 
 class PID {
+private:
+  long run_ctr;
+
 public:
   /*
   * Errors
@@ -9,6 +12,8 @@ public:
   double p_error;
   double i_error;
   double d_error;
+
+  double run_error;
 
   /*
   * Coefficients
@@ -41,6 +46,14 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+
+  /** Return total run error . */
+  double RunError();
+
+
+private:
+
+  double prev_cte = 0;
 };
 
 #endif /* PID_H */

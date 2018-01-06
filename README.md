@@ -1,6 +1,31 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
+## Implementation details
+
+### Selecting PID parameters
+Current implementation has 
+[0.36, 0, 5.0] for P I D parameters.
+
+These were obtained as a result of twiddle algorithm. (run `twiddle` executable)
+Initial set of parameters' increments [1,1,1]  were not a good start because of large influence of Derivative part
+and it had to be way larger than initial value.
+So after a set of experiments and starting Differential increment from 2 - it helped find a balanced set of parameters.
+
+For twiddle simulator is reset after every 2000 callbacks.
+Program calculates Run error for the whole iteration that is used to adjust PID parameters.
+
+### Explanation for selected values
+
+Having a low P parameter helps avoid very sharp turns and basically reduces immediate impact of cte 
+on steering angle.
+  
+In contrast large D parameter helps smooth a lot the trajectory and avoid late sharp reaction.
+
+As an early experiment P was set to about 2.0 and that caused large oscillations with the speed increase.
+
+Integral parameter is set to Zero as during experiments there seem to be no systemic drift and as a result car performs much better with I set to 0.
+
 ---
 
 ## Dependencies
